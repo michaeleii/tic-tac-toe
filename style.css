@@ -1,14 +1,9 @@
-/* *,
-*::before,
-*::after {
-	box-sizing: border-box;
-} */
 :root {
 	--cell-size: 100px;
 	--mark-size: calc(var(--cell-size) * 0.9);
 	--primary-color: #83c5be;
 	--secondary-color: #006d77;
-	--hover-color: #01838f;
+	--hover-color: #0f8f9b;
 }
 
 body {
@@ -108,9 +103,39 @@ h1 {
 	background-color: var(--primary-color);
 	scale: 0.7;
 }
+
+/* X and O color when hovering over the grid */
 .board.x .cell:not(.x):not(.o):hover::before,
 .board.x .cell:not(.x):not(.o):hover::after,
-.board.o .cell:not(.x):not(.o):hover::before,
-.board.o .cell:not(.x):not(.o):hover::after {
+.board.o .cell:not(.x):not(.o):hover::before {
 	background-color: var(--hover-color);
+}
+
+/* Winning Message */
+.winning-msg {
+	position: fixed;
+	inset: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	gap: 15px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	font-family: sans-serif;
+	font-size: 5rem;
+}
+.winning-msg button {
+	font-size: 3rem;
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	border: none;
+	border-radius: 10px;
+	padding: 0.25em 0.5em;
+}
+.winning-msg button:hover {
+	filter: brightness(80%);
+}
+.winning-msg.show {
+	display: flex;
 }
