@@ -1,0 +1,97 @@
+/* *,
+*::before,
+*::after {
+	box-sizing: border-box;
+} */
+:root {
+	--cell-size: 100px;
+	--mark-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+	margin: 0;
+}
+h1 {
+	text-align: center;
+}
+.board {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+}
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+
+/* Getting rid of pointer when x or o is already displayed on the grid */
+.cell.o,
+.cell.x {
+	cursor: not-allowed;
+}
+/* Getting rid of the outer borders on the board */
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+	border-top: none;
+}
+
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+	border-bottom: none;
+}
+
+.cell:nth-child(3n + 1) {
+	border-left: none;
+}
+.cell:nth-child(3n + 3) {
+	border-right: none;
+}
+
+/* Display X onto the grid */
+
+.cell.x::before,
+.cell.x::after {
+	content: "";
+	position: absolute;
+	width: calc(var(--mark-size) * 0.15);
+	height: calc(var(--mark-size));
+	background-color: black;
+}
+.cell.x::before {
+	rotate: 45deg;
+}
+.cell.x::after {
+	rotate: -45deg;
+}
+
+/* Display O onto the grid */
+
+.cell.o::before,
+.cell.o::after {
+	content: "";
+	position: absolute;
+	width: var(--mark-size);
+	height: var(--mark-size);
+	border-radius: 50%;
+}
+.cell.o::before {
+	background-color: black;
+}
+.cell.o::after {
+	background-color: white;
+	scale: 0.7;
+}
